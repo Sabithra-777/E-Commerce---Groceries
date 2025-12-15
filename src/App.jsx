@@ -1,3 +1,5 @@
+// Main application component
+// Handles routing and overall layout of the application
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";

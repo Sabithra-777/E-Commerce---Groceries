@@ -11,56 +11,99 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    if (searchQuery.trim()) {
-      navigate(`/search/${searchQuery}`);
+    const query = searchQuery.trim();
+    if (query) {
+      navigate(`/search/${query}`);
       setSearchQuery("");
     }
   };
 
   return (
     <nav style={navbarStyles.nav}>
+   
       <div style={navbarStyles.leftSection}>
-        <div style={navbarStyles.brand} onClick={() => navigate('/')}>FreshCart</div>
-        
+        <div
+          style={navbarStyles.brand}
+          onClick={() => navigate("/")}
+          role="button"
+          tabIndex={0}
+        >
+          FreshCart
+        </div>
+
         <div style={navbarStyles.searchContainer}>
-          <input 
-            type="text" 
-            placeholder="Search for products, brands and more..." 
+          <input
+            type="text"
+            placeholder="Search for products, brands and more..."
             style={navbarStyles.searchInput}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+            aria-label="Search products"
           />
-          <button style={navbarStyles.searchButton} onClick={handleSearch}><i className="fas fa-search"></i></button>
+          <button
+            style={navbarStyles.searchButton}
+            onClick={handleSearch}
+            aria-label="Search"
+          >
+            <i className="fas fa-search"></i>
+          </button>
         </div>
       </div>
 
+      
       <div style={navbarStyles.rightSection}>
         <div style={navbarStyles.deliveryInfo}>
           <i className="fas fa-bolt"></i> Delivery in 10 mins
         </div>
-        
-        <button style={navbarStyles.locationBtn} onClick={() => navigate('/location')}>
+
+        <button
+          style={navbarStyles.locationBtn}
+          onClick={() => navigate("/location")}
+        >
           <i className="fas fa-map-marker-alt"></i> Select Location
         </button>
 
         <div style={navbarStyles.navLinks}>
-          <a href="/" style={navbarStyles.link}>Home</a>
-          <a href="/cart" style={navbarStyles.cartLink}>
-            <i className="fas fa-shopping-cart"></i> Cart ({cart.length})
-          </a>
-          
+          <button
+            style={navbarStyles.link}
+            onClick={() => navigate("/")}
+          >
+            Home
+          </button>
+
+          <button
+            style={navbarStyles.cartLink}
+            onClick={() => navigate("/cart")}
+          >
+            <i className="fas fa-shopping-cart"></i>{" "}
+            Cart ({cart?.length || 0})
+          </button>
+
           {user ? (
             <>
               <span style={navbarStyles.link}>Hi, {user.name}</span>
-              <button style={navbarStyles.loginBtn} onClick={logout}>
+              <button
+                style={navbarStyles.loginBtn}
+                onClick={logout}
+              >
                 Logout
               </button>
             </>
           ) : (
             <>
-              <button style={navbarStyles.loginBtn} onClick={() => navigate('/login')}>Login</button>
-              <button style={navbarStyles.signupBtn} onClick={() => navigate('/login')}>Sign Up</button>
+              <button
+                style={navbarStyles.loginBtn}
+                onClick={() => navigate("/login")}
+              >
+                Login
+              </button>
+              <button
+                style={navbarStyles.signupBtn}
+                onClick={() => navigate("/login")}
+              >
+                Sign Up
+              </button>
             </>
           )}
         </div>

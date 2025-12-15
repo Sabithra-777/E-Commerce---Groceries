@@ -9,30 +9,16 @@ export const navbarStyles = {
     boxShadow: "0 2px 4px rgba(0,0,0,0.08)",
     flexWrap: "wrap",
     gap: "10px",
-  },
-
-  '@media (max-width: 768px)': {
-    nav: {
-      flexDirection: "column",
-      padding: "10px",
-    },
-    searchContainer: {
-      width: "100%",
-      maxWidth: "none",
-    },
-    rightSection: {
-      width: "100%",
-      justifyContent: "space-between",
-    },
-    navLinks: {
-      gap: "15px",
-    },
+    position: "sticky",
+    top: 0,
+    zIndex: 1000,
   },
 
   leftSection: {
     display: "flex",
     alignItems: "center",
-    gap: "40px",
+    gap: "32px",
+    flexWrap: "wrap",
   },
 
   brand: {
@@ -41,13 +27,15 @@ export const navbarStyles = {
     color: "#2e7d32",
     cursor: "pointer",
     letterSpacing: "-0.5px",
+    userSelect: "none",
   },
 
   searchContainer: {
     display: "flex",
     alignItems: "center",
     position: "relative",
-    width: "400px",
+    width: "380px",
+    maxWidth: "100%",
   },
 
   searchInput: {
@@ -57,25 +45,27 @@ export const navbarStyles = {
     borderRadius: "8px",
     fontSize: "14px",
     outline: "none",
-    transition: "border-color 0.2s",
+    transition: "border-color 0.2s, box-shadow 0.2s",
   },
 
   searchButton: {
     position: "absolute",
     right: "8px",
-    padding: "8px 12px",
+    padding: "8px 14px",
     backgroundColor: "#ff6b35",
     color: "white",
     border: "none",
     borderRadius: "6px",
     cursor: "pointer",
     fontSize: "14px",
+    transition: "background-color 0.2s",
   },
 
   rightSection: {
     display: "flex",
     alignItems: "center",
-    gap: "24px",
+    gap: "20px",
+    flexWrap: "wrap",
   },
 
   deliveryInfo: {
@@ -85,6 +75,7 @@ export const navbarStyles = {
     display: "flex",
     alignItems: "center",
     gap: "4px",
+    whiteSpace: "nowrap",
   },
 
   locationBtn: {
@@ -104,28 +95,30 @@ export const navbarStyles = {
   navLinks: {
     display: "flex",
     alignItems: "center",
-    gap: "24px",
+    gap: "20px",
+    flexWrap: "wrap",
   },
 
   link: {
     color: "#333",
-    textDecoration: "none",
     fontSize: "14px",
     fontWeight: "500",
     cursor: "pointer",
     padding: "8px 0",
+    background: "none",
+    border: "none",
     transition: "color 0.2s",
   },
 
   cartLink: {
     color: "#333",
-    textDecoration: "none",
     fontSize: "14px",
     fontWeight: "500",
     cursor: "pointer",
     padding: "8px 16px",
     border: "1px solid #e0e0e0",
     borderRadius: "6px",
+    background: "none",
     transition: "all 0.2s",
   },
 

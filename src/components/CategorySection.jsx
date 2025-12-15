@@ -1,7 +1,8 @@
-import { categoryStyles } from "./CategorySection.styles";
+import { memo, useCallback } from 'react';
+import { categoryStyles } from './CategorySection.styles';
 
-const CategorySection = ({ title, items, onItemClick }) => {
-  const getItemIcon = (item) => {
+const CategorySection = ({ title, items, onItemClick, activeItem }) => {
+  const getItemIcon = useCallback((item) => {
     const iconMap = {
       "Grocery": "🛒",
       "Fruits & Vegetables": "🥕",
@@ -28,25 +29,50 @@ const CategorySection = ({ title, items, onItemClick }) => {
       "Contact Us": "📞"
     };
     return iconMap[item] || "📄";
-  };
+  }, []);
+
+  const handleItemClick = useCallback((item) => {
+    onItemClick?.(item);
+  }, [onItemClick]);
+
+  const handleKeyDown = useCallback((e, item) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleItemClick(item);
+    }
+  }, [handleItemClick]);
 
   return (
-    <div style={categoryStyles.section}>
+    <div style={categoryStyles.section} role="navigation" aria-label={`${title} categories`}>
       <h3 style={categoryStyles.title}>{title}</h3>
-      <ul style={categoryStyles.list}>
-        {items.map((item, index) => (
-          <li 
-            key={index} 
-            style={categoryStyles.listItem}
-            onClick={() => onItemClick && onItemClick(item)}
-          >
-            <span style={categoryStyles.itemIcon}>{getItemIcon(item)}</span>
-            {item}
-          </li>
-        ))}
+      <ul style={categoryStyles.list} role="list">
+        {items.map((item) => {
+          const isActive = activeItem === item;
+          const itemStyles = {
+            ...categoryStyles.listItem,
+            ...(isActive && categoryStyles.activeItem)
+          };
+          return (
+            <li
+              key={item}
+              style={itemStyles}
+              role="button"
+              tabIndex={0}
+              aria-current={isActive ? 'page' : undefined}
+              aria-label={`Navigate to ${item}`}
+              onClick={() => handleItemClick(item)}
+              onKeyDown={(e) => handleKeyDown(e, item)}
+            >
+              <span style={categoryStyles.itemIcon} aria-hidden="true">
+                {getItemIcon(item)}
+              </span>
+              <span>{item}</span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
 };
 
-export default CategorySection;
+export default memo(CategorySection);

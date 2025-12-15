@@ -4,40 +4,57 @@ export const categoryStyles = {
     flexDirection: "column",
     minHeight: "200px",
   },
-
   title: {
     fontSize: "18px",
     fontWeight: "700",
-    marginBottom: "20px",
+    marginBottom: "16px",
     color: "#ffffff",
     textTransform: "uppercase",
     letterSpacing: "0.5px",
   },
-
+  search: {
+    padding: "8px 10px",
+    marginBottom: "12px",
+    borderRadius: "6px",
+    border: "1px solid #2c3e50",
+    backgroundColor: "#1f2a36",
+    color: "#ffffff",
+    outline: "none",
+    fontSize: "14px",
+  },
   list: {
     listStyle: "none",
     padding: 0,
     margin: 0,
     display: "flex",
     flexDirection: "column",
-    gap: "8px",
+    gap: "6px",
   },
-
   listItem: {
-    padding: "12px 0",
+    padding: "10px 8px",
     fontSize: "15px",
     color: "#bdc3c7",
     cursor: "pointer",
-    transition: "all 0.2s ease",
-    borderRadius: "4px",
+    transition: "background-color 0.2s ease, color 0.2s ease",
+    borderRadius: "6px",
     lineHeight: "1.4",
     display: "flex",
     alignItems: "center",
     gap: "10px",
   },
-
+  activeItem: {
+    backgroundColor: "#2ecc71",
+    color: "#0b2f1d",
+    fontWeight: "600",
+  },
   itemIcon: {
     fontSize: "16px",
     width: "20px",
+    textAlign: "center",
+  },
+  empty: {
+    fontSize: "14px",
+    color: "#7f8c8d",
+    padding: "10px 8px",
   },
 };
